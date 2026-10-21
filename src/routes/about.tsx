@@ -3,6 +3,7 @@ import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
 import { Team } from "@/components/site/sections";
 import { ShieldCheck, Target, Zap, BarChart3, Globe2, Cpu } from "lucide-react";
+import { canonicalLink, pageMeta } from "@/lib/seo";
 
 export const Route = createFileRoute("/about")({
   head: () => ({
@@ -11,10 +12,12 @@ export const Route = createFileRoute("/about")({
       {
         name: "description",
         content:
-          "Discover NEXDEER, the premier B2B digital growth agency specializing in performance marketing, Next.js web development, enterprise SEO, and AI automation for brands in UAE, KSA, and Pakistan.",
+          "Meet NEXDEER, a B2B digital growth agency for performance marketing, web development, SEO and AI automation, serving brands in the UAE, KSA and Pakistan.",
       },
-      { name: "keywords", content: "digital growth agency, performance marketing, B2B lead generation, SEO experts, custom web development, AI automation agency, UAE marketing agency, KSA digital agency" }
+      { name: "keywords", content: "digital growth agency, performance marketing, B2B lead generation, SEO experts, custom web development, AI automation agency, UAE marketing agency, KSA digital agency" },
+      ...pageMeta("/about"),
     ],
+    links: [canonicalLink("/about")],
   }),
   component: About,
 });

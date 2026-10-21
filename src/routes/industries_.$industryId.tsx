@@ -4,16 +4,20 @@ import { Footer } from "@/components/site/Footer";
 import { INDUSTRIES } from "@/data/industries";
 import { ArrowLeft, CheckCircle2, Target, BarChart3, ArrowRight, Zap } from "lucide-react";
 import { FinalCTA } from "@/components/site/sections";
+import { canonicalLink, pageMeta } from "@/lib/seo";
 
 export const Route = createFileRoute("/industries_/$industryId")({
   head: ({ params }) => {
-     const name = params.industryId.split('-').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
+     const industry = INDUSTRIES.find(ind => slugify(ind.label) === params.industryId);
+     const name = industry ? industry.label : params.industryId.split('-').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
      return {
        meta: [
          { title: `${name} Digital Marketing & Growth Agency | NEXDEER` },
          { name: "description", content: `Expert digital marketing, enterprise SEO, and scalable lead generation strategies built specifically for the ${name} industry.` },
-         { name: "keywords", content: `${name} marketing, ${name} SEO, ${name} lead generation, B2B marketing for ${name}, digital agency for ${name}` }
-       ]
+         { name: "keywords", content: `${name} marketing, ${name} SEO, ${name} lead generation, B2B marketing for ${name}, digital agency for ${name}` },
+         ...pageMeta(`/industries/${params.industryId}`),
+       ],
+       links: [canonicalLink(`/industries/${params.industryId}`)],
      };
   },
   component: IndustryDetail,

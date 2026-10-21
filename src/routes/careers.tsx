@@ -3,13 +3,16 @@ import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
 import { FinalCTA, ContactStrip, RevealSection } from "@/components/site/sections";
 import { ArrowRight, CheckCircle2, MapPin, Code2, Search, Megaphone, Palette, Video, Users, Target, PhoneCall } from "lucide-react";
+import { canonicalLink, pageMeta } from "@/lib/seo";
 
 export const Route = createFileRoute("/careers")({
   head: () => ({
     meta: [
       { title: "Careers | NEXDEER Growth Agency" },
       { name: "description", content: "Join NEXDEER. We are hiring top-tier growth strategists, developers, and designers. Remote and onsite positions available." },
+      ...pageMeta("/careers"),
     ],
+    links: [canonicalLink("/careers")],
   }),
   component: CareersPage,
 });

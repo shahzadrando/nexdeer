@@ -16,13 +16,16 @@ import {
   FinalCTA,
   ContactStrip,
 } from "@/components/site/sections";
+import { canonicalLink, pageMeta } from "@/lib/seo";
 
 export const Route = createFileRoute("/services")({
   head: () => ({
     meta: [
       { title: "Services | NEXDEER Growth Agency" },
       { name: "description", content: "Explore our full-stack digital growth services, including performance marketing, web design, SEO, and AI automation." },
+      ...pageMeta("/services"),
     ],
+    links: [canonicalLink("/services")],
   }),
   component: ServicesPage,
 });

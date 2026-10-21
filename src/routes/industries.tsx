@@ -4,16 +4,19 @@ import { Footer } from "@/components/site/Footer";
 import { INDUSTRIES } from "@/data/industries";
 import { ArrowRight, BarChart3, Target, Zap, TrendingUp } from "lucide-react";
 import { Link } from "@tanstack/react-router";
+import { canonicalLink, pageMeta } from "@/lib/seo";
 
 export const Route = createFileRoute("/industries")({
   head: () => ({
     meta: [
       { title: "B2B Marketing & Enterprise Growth Strategies by Industry | NEXDEER" },
-      { name: "description", content: "Discover NEXDEER's industry-specific digital transformation and revenue acquisition models. We engineer scalable growth for Real Estate, Healthcare, SaaS, and Enterprise B2B markets." },
+      { name: "description", content: "Industry-specific marketing, SEO and lead generation from NEXDEER, built for Real Estate, Healthcare, SaaS, E-Commerce and B2B companies." },
       { name: "keywords", content: "B2B marketing strategies, enterprise digital transformation, industry specific SEO, SaaS lead generation, healthcare marketing agency, real estate digital growth, account based marketing" },
       { property: "og:title", content: "Industry-Specific Enterprise Growth | NEXDEER" },
       { property: "og:description", content: "Customized digital transformation and revenue-focused acquisition models tailored to the exact nuances of your vertical." },
+      ...pageMeta("/industries"),
     ],
+    links: [canonicalLink("/industries")],
   }),
   component: IndustriesPage,
 });

@@ -4,8 +4,29 @@ import { Footer } from "@/components/site/Footer";
 import { FinalCTA } from "@/components/site/sections";
 import { ALL_PORTFOLIO_PROJECTS } from "@/components/site/sections";
 import { ArrowLeft, CheckCircle2, Calendar, Target, ArrowRight, ArrowUpRight, Sparkles } from "lucide-react";
+import { canonicalLink, pageMeta } from "@/lib/seo";
 
 export const Route = createFileRoute("/our-work_/$projectId")({
+  head: ({ params }) => {
+    const project = ALL_PORTFOLIO_PROJECTS.find(p => p.id === params.projectId);
+    const path = `/our-work/${params.projectId}`;
+    if (!project) {
+      return { meta: [{ title: "Project Not Found | NEXDEER" }, { name: "robots", content: "noindex" }] };
+    }
+    const services = project.tag.replace(/\s*·\s*Case Study$/i, "").replace(/\s*·\s*/g, " & ");
+    return {
+      meta: [
+        { title: `${project.title}: ${services} Project | NEXDEER` },
+        {
+          name: "description",
+          content: `How NEXDEER delivered ${services} for ${project.title}: the challenge, our strategy, and the results. See the full project.`,
+        },
+        { property: "og:title", content: `${project.title} | NEXDEER Case Study` },
+        ...pageMeta(path),
+      ],
+      links: [canonicalLink(path)],
+    };
+  },
   component: PortfolioDetail,
 });
 

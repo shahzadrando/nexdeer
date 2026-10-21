@@ -2,13 +2,16 @@ import { createFileRoute } from "@tanstack/react-router";
 import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
 import { MessageCircle, Mail, MapPin, Phone } from "lucide-react";
+import { canonicalLink, pageMeta } from "@/lib/seo";
 
 export const Route = createFileRoute("/contact")({
   head: () => ({
     meta: [
       { title: "Contact Us | NEXDEER Growth Agency" },
-      { name: "description", content: "Get in touch with NEXDEER to build your custom growth plan." },
+      { name: "description", content: "Contact NEXDEER by WhatsApp, phone or email to plan your marketing, website, SEO or AI automation project. Get a custom growth plan from our team." },
+      ...pageMeta("/contact"),
     ],
+    links: [canonicalLink("/contact")],
   }),
   component: Contact,
 });

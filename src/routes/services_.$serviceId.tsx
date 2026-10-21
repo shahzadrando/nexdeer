@@ -4,6 +4,7 @@ import { Footer } from "@/components/site/Footer";
 import { SERVICES_DATA } from "@/data/services";
 import { ArrowLeft, CheckCircle2, ArrowRight } from "lucide-react";
 import { FinalCTA } from "@/components/site/sections";
+import { canonicalLink, pageMeta } from "@/lib/seo";
 
 export const Route = createFileRoute("/services_/$serviceId")({
   head: ({ params }) => {
@@ -15,8 +16,10 @@ export const Route = createFileRoute("/services_/$serviceId")({
        meta: [
          { title: `${name} | NEXDEER Growth Agency` },
          { name: "description", content: service ? service.description : `Expert ${name} services built to scale your enterprise revenue.` },
-         { name: "keywords", content: keywords }
-       ]
+         { name: "keywords", content: keywords },
+         ...pageMeta(`/services/${params.serviceId}`),
+       ],
+       links: [canonicalLink(`/services/${params.serviceId}`)],
      };
   },
   component: ServiceDetail,

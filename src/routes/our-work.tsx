@@ -3,13 +3,16 @@ import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
 import { Portfolio as PortfolioSection, CASES, Testimonials } from "@/components/site/sections";
 import { ArrowUpRight, ArrowRight } from "lucide-react";
+import { canonicalLink, pageMeta } from "@/lib/seo";
 
 export const Route = createFileRoute("/our-work")({
   head: () => ({
     meta: [
-      { title: "Our Work | NEXDEER Growth Agency" },
-      { name: "description", content: "Explore our latest premium projects and digital mockups." },
+      { title: "Our Work & Case Studies | NEXDEER Growth Agency" },
+      { name: "description", content: "Case studies and projects from NEXDEER: local SEO wins, websites, performance marketing and automation for businesses across many industries." },
+      ...pageMeta("/our-work"),
     ],
+    links: [canonicalLink("/our-work")],
   }),
   component: OurWorkPage,
 });

@@ -12,6 +12,7 @@ import { useEffect, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
+import { absoluteUrl, ORGANIZATION_JSON_LD } from "../lib/seo";
 
 function NotFoundComponent() {
   return (
@@ -84,15 +85,25 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { property: "og:title", content: "NEXDEER - Scalable Growth Systems" },
       { property: "og:description", content: "NEXDEER builds high-performing growth systems, bespoke websites, performance marketing, and automation for brands worldwide." },
       { property: "og:type", content: "website" },
-      { property: "og:image", content: "/og-image.png" },
+      { property: "og:site_name", content: "NEXDEER" },
+      { property: "og:image", content: absoluteUrl("/og-image.png") },
+      { property: "og:image:width", content: "1200" },
+      { property: "og:image:height", content: "630" },
       { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:image", content: absoluteUrl("/og-image.png") },
     ],
     links: [
+      { rel: "icon", href: "/favicon.ico", sizes: "48x48" },
+      { rel: "icon", type: "image/png", href: "/icon-192.png", sizes: "192x192" },
+      { rel: "apple-touch-icon", href: "/apple-touch-icon.png" },
       { rel: "stylesheet", href: appCss },
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "" },
       { rel: "preconnect", href: "https://images.unsplash.com", crossOrigin: "" },
       { rel: "dns-prefetch", href: "https://images.unsplash.com" },
+    ],
+    scripts: [
+      { type: "application/ld+json", children: JSON.stringify(ORGANIZATION_JSON_LD) },
     ],
   }),
   shellComponent: RootShell,

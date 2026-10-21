@@ -28,24 +28,23 @@ import {
   ContactStrip,
   ServicesCTAStrip,
 } from "@/components/site/sections";
+import { canonicalLink, pageMeta } from "@/lib/seo";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "NEXDEER | Full-Stack Digital Growth Agency | Marketing, Websites, SEO & AI Automation" },
+      { title: "NEXDEER | Digital Growth Agency: Marketing, SEO & AI" },
       {
         name: "description",
         content:
-          "NEXDEER helps businesses scale faster through performance marketing, website design & development, SEO, Local SEO, GEO, AEO, branding, and AI-powered automation. Serving clients globally with a focus on Pakistan, UAE, and Saudi Arabia.",
+          "Performance marketing, websites, SEO, GEO/AEO and AI automation built into one growth system. Serving Pakistan, UAE and Saudi Arabia. Get your growth plan.",
       },
       { property: "og:title", content: "NEXDEER | Full-Stack Digital Growth Agency" },
       { property: "og:description", content: "Performance marketing, websites, SEO, and AI automation — built into one scalable growth system." },
       { property: "og:type", content: "website" },
-      { property: "og:url", content: "/" },
+      ...pageMeta("/"),
     ],
-    links: [
-      { rel: "canonical", href: "/" },
-    ],
+    links: [canonicalLink("/")],
   }),
   component: Index,
 });

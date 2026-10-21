@@ -9,6 +9,7 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as ServicesRouteImport } from './routes/services'
 import { Route as PortfolioRouteImport } from './routes/portfolio'
 import { Route as OurWorkRouteImport } from './routes/our-work'
@@ -22,6 +23,11 @@ import { Route as OurWorkProjectIdRouteImport } from './routes/our-work_.$projec
 import { Route as IndustriesIndustryIdRouteImport } from './routes/industries_.$industryId'
 import { Route as ApiContactRouteImport } from './routes/api.contact'
 
+const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
+  id: '/sitemap.xml',
+  path: '/sitemap.xml',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ServicesRoute = ServicesRouteImport.update({
   id: '/services',
   path: '/services',
@@ -92,6 +98,7 @@ export interface FileRoutesByFullPath {
   '/our-work': typeof OurWorkRoute
   '/portfolio': typeof PortfolioRoute
   '/services': typeof ServicesRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/api/contact': typeof ApiContactRoute
   '/industries/$industryId': typeof IndustriesIndustryIdRoute
   '/our-work/$projectId': typeof OurWorkProjectIdRoute
@@ -106,6 +113,7 @@ export interface FileRoutesByTo {
   '/our-work': typeof OurWorkRoute
   '/portfolio': typeof PortfolioRoute
   '/services': typeof ServicesRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/api/contact': typeof ApiContactRoute
   '/industries/$industryId': typeof IndustriesIndustryIdRoute
   '/our-work/$projectId': typeof OurWorkProjectIdRoute
@@ -121,6 +129,7 @@ export interface FileRoutesById {
   '/our-work': typeof OurWorkRoute
   '/portfolio': typeof PortfolioRoute
   '/services': typeof ServicesRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/api/contact': typeof ApiContactRoute
   '/industries_/$industryId': typeof IndustriesIndustryIdRoute
   '/our-work_/$projectId': typeof OurWorkProjectIdRoute
@@ -137,6 +146,7 @@ export interface FileRouteTypes {
     | '/our-work'
     | '/portfolio'
     | '/services'
+    | '/sitemap.xml'
     | '/api/contact'
     | '/industries/$industryId'
     | '/our-work/$projectId'
@@ -151,6 +161,7 @@ export interface FileRouteTypes {
     | '/our-work'
     | '/portfolio'
     | '/services'
+    | '/sitemap.xml'
     | '/api/contact'
     | '/industries/$industryId'
     | '/our-work/$projectId'
@@ -165,6 +176,7 @@ export interface FileRouteTypes {
     | '/our-work'
     | '/portfolio'
     | '/services'
+    | '/sitemap.xml'
     | '/api/contact'
     | '/industries_/$industryId'
     | '/our-work_/$projectId'
@@ -180,6 +192,7 @@ export interface RootRouteChildren {
   OurWorkRoute: typeof OurWorkRoute
   PortfolioRoute: typeof PortfolioRoute
   ServicesRoute: typeof ServicesRoute
+  SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   ApiContactRoute: typeof ApiContactRoute
   IndustriesIndustryIdRoute: typeof IndustriesIndustryIdRoute
   OurWorkProjectIdRoute: typeof OurWorkProjectIdRoute
@@ -188,6 +201,13 @@ export interface RootRouteChildren {
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/sitemap.xml': {
+      id: '/sitemap.xml'
+      path: '/sitemap.xml'
+      fullPath: '/sitemap.xml'
+      preLoaderRoute: typeof SitemapDotxmlRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/services': {
       id: '/services'
       path: '/services'
@@ -284,6 +304,7 @@ const rootRouteChildren: RootRouteChildren = {
   OurWorkRoute: OurWorkRoute,
   PortfolioRoute: PortfolioRoute,
   ServicesRoute: ServicesRoute,
+  SitemapDotxmlRoute: SitemapDotxmlRoute,
   ApiContactRoute: ApiContactRoute,
   IndustriesIndustryIdRoute: IndustriesIndustryIdRoute,
   OurWorkProjectIdRoute: OurWorkProjectIdRoute,

@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
 import { Portfolio as PortfolioSection } from "@/components/site/sections";
+import { canonicalLink } from "@/lib/seo";
 
 export const Route = createFileRoute("/portfolio")({
   head: () => ({
@@ -9,6 +10,8 @@ export const Route = createFileRoute("/portfolio")({
       { title: "Portfolio | NEXDEER Growth Agency" },
       { name: "description", content: "Explore our latest premium projects and digital mockups." },
     ],
+    // Same content as /our-work, so point search engines at that page
+    links: [canonicalLink("/our-work")],
   }),
   component: PortfolioPage,
 });
